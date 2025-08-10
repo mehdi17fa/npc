@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
+import HomePage from './pages/HomePage';
+import AboutSection from './pages/AboutPage';
+import ProjectsPage from "./pages/ProjectsPage";
+import ServiceDetail from "./pages/ServiceDetail"; // import your new service detail page
+import DevisPage from "./pages/DevisPage";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="font-sans text-gray-900">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutSection />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+
+          {/* Dynamic service detail route */}
+          <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
+          <Route path="/devis" element={<DevisPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
