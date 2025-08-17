@@ -9,6 +9,7 @@ import {
   CogIcon,
   DocumentTextIcon
 } from '@heroicons/react/24/outline';
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -82,9 +83,12 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-gray-900 mb-6">Company</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-sm text-gray-700 hover:text-amber-600 transition-colors">
+                <Link
+                  to="/about" // your existing route path
+                  className="text-sm text-gray-700 hover:text-amber-600 transition-colors"
+                >
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="text-sm text-gray-700 hover:text-amber-600 transition-colors">
@@ -93,19 +97,9 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#" className="text-sm text-gray-700 hover:text-amber-600 transition-colors">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-700 hover:text-amber-600 transition-colors">
                   News & Updates
                 </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-gray-700 hover:text-amber-600 transition-colors">
-                  Case Studies
-                </a>
-              </li>
+              </li>  
             </ul>
           </div>
 

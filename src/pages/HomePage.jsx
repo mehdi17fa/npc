@@ -21,7 +21,7 @@ function HomePage() {
       <StatsSection />
       <ServicesSection />
       <ProjectsSection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <ReferencesSection />
       <ContactSection />
       <RetoursSection />

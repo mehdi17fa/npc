@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import img1 from "../assets/project1.jpg";
@@ -20,7 +21,6 @@ const LocationIcon = () => (
 
 const ProjectsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const containerRef = useRef(null);
 
   const allProjects = [
     {
@@ -49,7 +49,6 @@ const ProjectsPage = () => {
       surface: "3,200 m²",
       details: "Construction d'un centre logistique moderne avec..."
     },
-    // ... (rest of projects)
   ];
 
   const categories = [
@@ -92,8 +91,15 @@ const ProjectsPage = () => {
       {/* Project Cards */}
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
-            <div key={project.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          {filteredProjects.map((project, i) => (
+            <motion.div
+              key={project.id}
+              className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.2 }}
+            >
               <img src={project.image} alt={project.title} className="w-full h-64 object-cover" />
               <div className="p-6">
                 <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
@@ -123,7 +129,7 @@ const ProjectsPage = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -131,17 +137,27 @@ const ProjectsPage = () => {
       {/* Detailed View */}
       <section className="py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">Détails de Nos Projets</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
+            Détails de Nos Projets
+          </h2>
           <div className="space-y-12">
             {filteredProjects.slice(0, 3).map((project, index) => (
-              <div
+              <motion.div
                 key={project.id}
                 className={`grid lg:grid-cols-2 gap-12 items-center ${
                   index % 2 === 1 ? "lg:flex-row-reverse" : ""
                 }`}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -80 : 80 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: index * 0.2 }}
               >
                 <div className={`${index % 2 === 1 ? "lg:order-2" : ""}`}>
-                  <img src={project.image} alt={project.title} className="w-full h-80 rounded-lg shadow-lg object-cover" />
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-80 rounded-lg shadow-lg object-cover"
+                  />
                 </div>
                 <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
                   <h3 className="text-2xl font-bold mb-4 text-gray-900">{project.title}</h3>
@@ -165,16 +181,24 @@ const ProjectsPage = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 px-4 bg-[#FFD500]">
+      <motion.section
+        className="py-16 px-4 bg-[#FFD500]"
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+      >
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">Votre Projet, Notre Expertise</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-black">
+            Votre Projet, Notre Expertise
+          </h2>
           <p className="text-xl text-gray-800 mb-8">
             Chaque projet est unique. Discutons de vos besoins spécifiques et créons ensemble la solution modulaire parfaite pour votre entreprise.
           </p>
@@ -182,7 +206,8 @@ const ProjectsPage = () => {
             Démarrer Mon Projet
           </button>
         </div>
-      </section>
+      </motion.section>
+
       <Footer />
     </div>
   );

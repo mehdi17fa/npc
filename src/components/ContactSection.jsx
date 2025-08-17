@@ -1,3 +1,7 @@
+import React from "react";
+import { motion } from "framer-motion";
+
+// Icons
 const EmailIcon = () => (
   <svg className="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -46,11 +50,17 @@ export default function ContactSection() {
           {contactMethods.map((method, index) => {
             const IconComponent = method.icon;
             return (
-              <button
+              <motion.button
                 key={index}
                 onClick={method.action}
-                className="group relative w-20 h-20 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-4 focus:ring-yellow-400 focus:ring-opacity-50"
+                className="group relative w-20 h-20 bg-black rounded-full flex items-center justify-center hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-yellow-400 focus:ring-opacity-50"
                 aria-label={method.label}
+                initial={{ opacity: 0, y: 40, scale: 0.8 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.3, ease: "easeOut", delay: index * 0.2 }}
+                whileHover={{ scale: 1.2 }} // 🔥 Only scaling up on hover
+                whileTap={{ scale: 0.95 }}
               >
                 <IconComponent />
                 
@@ -58,7 +68,7 @@ export default function ContactSection() {
                 <span className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-3 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
                   {method.label}
                 </span>
-              </button>
+              </motion.button>
             );
           })}
         </div>

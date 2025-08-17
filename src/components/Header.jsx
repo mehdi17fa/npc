@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/npcLogo.png";
 
 const MenuIcon = () => (
@@ -20,6 +20,7 @@ const Header = () => {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const navItems = [
     { href: "#about", label: "Qui sommes-nous" },
@@ -57,13 +58,36 @@ const Header = () => {
     setMobileServicesOpen(false);
   };
 
+  const handleLogoClick = () => {
+    if (location.pathname === "/") {
+      // Already on home → just scroll up
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // Navigate to home then scroll
+      navigate("/");
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 100);
+    }
+    setOpen(false);
+    setServiceDropdownOpen(false);
+    setMobileServicesOpen(false);
+  };
+
   return (
     <>
-      <header className="bg-white py-6 shadow-sm sticky top-0 z-50">
+      <header className="bg-white py-4 shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 flex flex-wrap justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <img src={logo} alt="Nassimi Pro Construction Logo" className="h-10 w-10 object-contain" />
+          <div
+            className="flex items-center space-x-3 cursor-pointer"
+            onClick={handleLogoClick}
+          >
+            <img
+              src={logo}
+              alt="Nassimi Pro Construction Logo"
+              className="h-14 w-14 object-contain"
+            />
             <h1 className="text-xl font-bold text-gray-800 hidden sm:block">
               NASSIMI PRO CONSTRUCTION
             </h1>
@@ -184,8 +208,15 @@ const Header = () => {
         {/* Sidebar Header */}
         <div className="p-6 border-b border-gray-200">
           <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-3">
-              <img src={logo} alt="Nassimi Pro Construction Logo" className="h-8 w-8 object-contain" />
+            <div
+              className="flex items-center space-x-3 cursor-pointer"
+              onClick={handleLogoClick}
+            >
+              <img
+                src={logo}
+                alt="Nassimi Pro Construction Logo"
+                className="h-8 w-8 object-contain"
+              />
               <h2 className="text-lg font-bold text-gray-800">Menu</h2>
             </div>
             <button

@@ -1,8 +1,9 @@
 import React, { useRef } from "react";
+import { motion } from "framer-motion";
 import img1 from "../assets/project1.jpg";
 import img2 from "../assets/project2.jpg";
 
-// Heroicons SVG components (inline since heroicons aren't available)
+// Heroicons SVG components
 const ChevronLeftIcon = () => (
   <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -42,12 +43,9 @@ const ProjectsSection = ({ onNavigateToProjects }) => {
   };
 
   const handleViewMore = () => {
-    // If you're using React Router, replace this with: navigate('/projects')
-    // For now, using a prop function or window.location
     if (onNavigateToProjects) {
       onNavigateToProjects();
     } else {
-      // Fallback navigation method
       window.location.href = '/projects';
     }
   };
@@ -64,15 +62,21 @@ const ProjectsSection = ({ onNavigateToProjects }) => {
           >
             <ChevronLeftIcon />
           </button>
+
           {/* Project Cards */}
           <div
             ref={containerRef}
-            className="overflow-x-auto flex justify-center items-center space-x-6 scrollbar-hide px-16"
+            className="overflow-x-auto overflow-y-hidden flex justify-center items-center space-x-6 scrollbar-hide px-16"
           >
             {projects.map((project, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="min-w-[300px] max-w-sm bg-white rounded-lg shadow-md p-4 flex-shrink-0"
+                className="min-w-[300px] max-w-sm bg-white rounded-lg shadow-md p-4 flex-shrink-0
+                          transform transition duration-300 hover:scale-105 hover:shadow-xl"
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, ease: "easeOut" }} // smoother & simultaneous
               >
                 <img
                   src={project.image}
@@ -81,9 +85,11 @@ const ProjectsSection = ({ onNavigateToProjects }) => {
                 />
                 <h3 className="font-semibold text-lg">{project.title}</h3>
                 <p className="text-gray-600 text-sm mt-2">{project.description}</p>
-              </div>
+              </motion.div>
             ))}
+
           </div>
+
           {/* Chevron Right */}
           <button
             onClick={() => scroll("right")}
@@ -92,6 +98,7 @@ const ProjectsSection = ({ onNavigateToProjects }) => {
             <ChevronRightIcon />
           </button>
         </div>
+
         {/* Voir Plus Button */}
         <div className="mt-10">
           <button 

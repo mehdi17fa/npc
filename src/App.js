@@ -6,10 +6,12 @@ import AboutSection from './pages/AboutPage';
 import ProjectsPage from "./pages/ProjectsPage";
 import ServiceDetail from "./pages/ServiceDetail"; // import your new service detail page
 import DevisPage from "./pages/DevisPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <div className="font-sans text-gray-900">
         <Routes>
           <Route path="/" element={<HomePage />} />

@@ -1,69 +1,77 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import axios from 'axios';
+import { motion } from 'framer-motion';
 
 const DevisPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: ''
-  });
+    const [formData, setFormData] = useState({
+      name: '',
+      prenom: '',
+      email: '',
+      phone: '',
+      service: '',
+      message: ''
+    });
 
-  const [errors, setErrors] = useState({});
-  const services = [
-    'Travaux de gros œuvre',
-    'Travaux de petits œuvre',
-    'Rénovation de bâtiments',
-    'Aménagement intérieur/extérieur',
-    'Peinture et maintenance'
-  ];
+    const [errors, setErrors] = useState({});
+    const services = [
+      'Travaux de gros œuvre',
+      'Travaux de petits œuvre',
+      'Rénovation de bâtiments',
+      'Aménagement intérieur/extérieur',
+      'Peinture et maintenance'
+    ];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    let sanitizedValue = value.replace(/[<>{}()]/g, '');
-    if (name === 'email') {
-      sanitizedValue = sanitizedValue.replace(/\s/g, '');
-    }
-    setFormData((prev) => ({ ...prev, [name]: sanitizedValue }));
-    validateField(name, sanitizedValue);
-  };
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      let sanitizedValue = value.replace(/[<>{}()]/g, '');
+      if (name === 'email') sanitizedValue = sanitizedValue.replace(/\s/g, '');
+      setFormData((prev) => ({ ...prev, [name]: sanitizedValue }));
+      validateField(name, sanitizedValue);
+    };
 
-  const validateField = (name, value) => {
-    let newErrors = { ...errors };
-    if (name === 'email') {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(value)) {
-        newErrors.email = 'Veuillez entrer un email valide.';
-      } else {
-        delete newErrors.email;
+    const validateField = (name, value) => {
+      let newErrors = { ...errors };
+      if (name === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) newErrors.email = 'Veuillez entrer un email valide.';
+        else delete newErrors.email;
       }
-    }
-    setErrors(newErrors);
-  };
+      setErrors(newErrors);
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (Object.keys(errors).length === 0) {
-      console.log('Form submitted:', formData);
-      alert('Demande envoyée avec succès!');
-      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
-    } else {
-      alert('Veuillez corriger les erreurs dans le formulaire.');
-    }
-  };
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      if (Object.keys(errors).length === 0) {
+        try {
+          const res = await axios.post('http://localhost:5000/api/devis', formData);
+          if (res.status === 201) {
+            alert('Demande envoyée avec succès!');
+            setFormData({ name: '', prenom: '', email: '', phone: '', service: '', message: '' });
+          }
+        } catch (err) {
+          console.error(err.response || err);
+          alert('Erreur lors de l’envoi du devis.');
+        }
+      } else alert('Veuillez corriger les erreurs dans le formulaire.');
+    };
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       <Header />
-      <main className="flex-1 flex flex-col md:flex-row p-6 max-w-7xl mx-auto">
-        <div className="md:w-2/3 w-full bg-white p-8 rounded-lg shadow-lg mb-6 md:mb-0">
+      <main className="flex-1 flex flex-col md:flex-row p-6 max-w-7xl mx-auto gap-6">
+        
+        {/* Form Section */}
+        <motion.div 
+          className="md:w-2/3 w-full bg-white p-8 rounded-lg shadow-lg"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <h2 className="text-3xl font-bold text-gray-800 mb-6">Demandez votre devis</h2>
           <p className="text-gray-600 mb-8">
-            Vous souhaitez faire appel à nos services ? Distribuez nos produits ? Utilisez le formulaire
-            ci-dessous dès maintenant pour demander votre devis en ligne. Nous vous répondrons le plus
-            bref possible.
+            Vous souhaitez faire appel à nos services ? Utilisez le formulaire ci-dessous pour demander votre devis en ligne.
           </p>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -80,7 +88,7 @@ const DevisPage = () => {
                 type="text"
                 name="prenom"
                 placeholder="Prénom"
-                value={formData.name}
+                value={formData.prenom}
                 onChange={handleChange}
                 className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 required
@@ -140,15 +148,21 @@ const DevisPage = () => {
 
             <button
               type="submit"
-              className="w-full bg-black text-white p-4 rounded-lg hover:bg-gray-800 transition duration-300 font-semibold"
+              className="w-full bg-black text-white p-4 rounded-lg hover:bg-gray-800 transition duration-300 font-semibold transform hover:scale-105"
             >
               Envoyer
             </button>
-
             <input type="text" name="honeypot" style={{ display: 'none' }} />
           </form>
-        </div>
-        <div className="md:w-1/3 w-full bg-yellow-400 text-black p-8 rounded-lg shadow-lg mt-6 md:mt-0 md:ml-6">
+        </motion.div>
+
+        {/* Sidebar */}
+        <motion.div
+          className="md:w-1/3 w-full bg-yellow-400 text-black p-8 rounded-lg shadow-lg"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
           <h3 className="text-xl font-bold mb-6">Localisation</h3>
           <div className="w-full h-64">
             <iframe
@@ -161,11 +175,17 @@ const DevisPage = () => {
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
-        </div>
+          <div className='mt-8'>
+            <h4 className="text-lg font-semibold">Horaires d'ouverture</h4>
+            <p className="text-base">Lundi - Vendredi : 09h00 - 18h00</p>
+            <p className="text-base">Samedi : 09h00 - 13h00</p>
+            <p className="text-base">Dimanche : Fermé</p>
+          </div>
+        </motion.div>
       </main>
       <Footer />
     </div>
   );
 };
 
-export default DevisPage;
+export default DevisPage;
