@@ -21,12 +21,14 @@ const HeroSection = () => {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white mb-6">
-          Génie civil et modularité,<br />
-          notre métier : bâtir
+        <h1 className="text-4xl md:text-4xl font-bold leading-tight text-white mb-6">
+         Bienvenue chez NASSIMI PRO CONSTRUCTION<br />
         </h1>
+        <h2 className="text-4xl md:text-4xl font-bold leading-tight text-white mb-6">
+         Construire aujourd’hui les fondations solides de demain<br />
+        </h2>
         <p className="text-lg md:text-xl mb-8 text-gray-200 max-w-2xl">
-          Des solutions modulaires pour des besoins uniques.
+          Spécialistes en construction et travaux divers, nous mettons à votre service notre expertise en génie civil et en construction métallique.
         </p>
 
         <button

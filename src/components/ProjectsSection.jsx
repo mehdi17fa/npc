@@ -55,6 +55,10 @@ const ProjectsSection = ({ onNavigateToProjects }) => {
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold mb-10">Nos Projets</h2>
         <div className="relative">
+          <p className="mb-8">
+            Découvrez nos projets récents : bâtiments modernes, infrastructures routières et complexes industriels. Chaque réalisation illustre notre engagement envers la qualité et la durabilité.
+
+          </p>
           {/* Chevron Left */}
           <button
             onClick={() => scroll("left")}

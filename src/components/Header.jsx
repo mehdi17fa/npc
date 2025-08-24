@@ -28,11 +28,10 @@ const Header = () => {
       href: "#services",
       label: "Nos services",
       dropdown: [
-        { label: "Travaux de gros œuvre", slug: "gros-oeuvre" },
-        { label: "Travaux de petits œuvre", slug: "petits-oeuvre" },
-        { label: "Rénovation de bâtiments", slug: "renovation" },
-        { label: "Aménagement intérieur / extérieur", slug: "amenagement" },
-        { label: "Petits travaux et maintenance", slug: "maintenance" },
+        { label: "Génie civil", slug: "génie(civil" },
+        { label: "Constructions métallique", slug: "constructons-métallique" },
+        { label: "Travaux divers", slug: "travaux-divers" },
+        
       ],
     },
     { href: "#projects", label: "Nos projets" },

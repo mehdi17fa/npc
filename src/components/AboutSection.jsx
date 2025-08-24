@@ -109,12 +109,15 @@ const AboutSection = ({ onNavigateToAbout }) => {
             
             <div className="space-y-4 text-gray-700 leading-relaxed text-base">
               <p>
-                Chez <strong>Nassimi Pro Construction</strong>, nous sommes passionnés par la transformation d'idées en réalité. 
-                Avec des années d'expertise dans la conception architecturale, structurelle, électrique et mécanique, 
-                nous nous spécialisons dans la livraison de solutions innovantes adaptées aux besoins uniques de nos clients.
+                 <strong>NASSIMI PRO CONSTRUCTION</strong>,
+                  s’impose depuis sa création comme un acteur fiable dans le secteur du génie civil et de la construction métallique. Notre mission est de bâtir avec qualité, sécurité et respect des délais. Nous croyons en la transparence, l’innovation et la satisfaction totale de nos clients.<br />
+                  ✔ Expertise confirmée<br />
+                  ✔ Équipe qualifiée<br />
+                  ✔ Respect des normes et de l’environnement
+
               </p>
               
-              <p>
+              {/* <p>
                 Notre mission est de construire un avenir défini par l'excellence, la précision et la durabilité. 
                 Du concept à la réalisation, nous priorisons la qualité, l'efficacité et la satisfaction client 
                 dans chaque projet que nous entreprenons.
@@ -124,7 +127,7 @@ const AboutSection = ({ onNavigateToAbout }) => {
                 Qu'il s'agisse de concevoir des structures de pointe, d'assurer des systèmes électriques fiables, 
                 ou de créer des solutions mécaniques efficaces, <strong>Nassimi Pro Construction</strong> est votre 
                 partenaire de confiance en construction et conception modulaire.
-              </p>
+              </p> */}
             </div>
 
             <div className="mt-8">

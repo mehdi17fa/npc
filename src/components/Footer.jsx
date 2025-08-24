@@ -32,17 +32,17 @@ const Footer = () => {
               
               <div className="flex items-center space-x-3">
                 <PhoneIcon className="h-5 w-5 text-amber-600 flex-shrink-0" />
-                <span className="text-sm text-gray-700">+1 (555) 123-4567</span>
+                <span className="text-sm text-gray-700">+212 622-255-022</span>
               </div>
               
               <div className="flex items-center space-x-3">
                 <EnvelopeIcon className="h-5 w-5 text-amber-600 flex-shrink-0" />
-                <span className="text-sm text-gray-700">info@company.com</span>
+                <span className="text-sm text-gray-700">nassimi.pro.construction@gmail.com</span>
               </div>
               
               <div className="flex items-center space-x-3">
                 <GlobeAltIcon className="h-5 w-5 text-amber-600 flex-shrink-0" />
-                <span className="text-sm text-gray-700">www.company.com</span>
+                <span className="text-sm text-gray-700">www.NassimiProConstuction.ma</span>
               </div>
             </div>
           </div>
@@ -54,25 +54,19 @@ const Footer = () => {
               <li>
                 <a href="#" className="flex items-center space-x-2 text-sm text-gray-700 hover:text-amber-600 transition-colors">
                   <CogIcon className="h-4 w-4" />
-                  <span>Consulting</span>
+                  <span>Génie civil</span>
                 </a>
               </li>
               <li>
                 <a href="#" className="flex items-center space-x-2 text-sm text-gray-700 hover:text-amber-600 transition-colors">
                   <BuildingOfficeIcon className="h-4 w-4" />
-                  <span>Development</span>
+                  <span>Constructions métalliques</span>
                 </a>
               </li>
               <li>
                 <a href="#" className="flex items-center space-x-2 text-sm text-gray-700 hover:text-amber-600 transition-colors">
                   <UserGroupIcon className="h-4 w-4" />
-                  <span>Support</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center space-x-2 text-sm text-gray-700 hover:text-amber-600 transition-colors">
-                  <DocumentTextIcon className="h-4 w-4" />
-                  <span>Documentation</span>
+                  <span>Travaux divers</span>
                 </a>
               </li>
             </ul>
@@ -87,17 +81,17 @@ const Footer = () => {
                   to="/about" // your existing route path
                   className="text-sm text-gray-700 hover:text-amber-600 transition-colors"
                 >
-                  About Us
+                  Qui sommes-nous
                 </Link>
               </li>
               <li>
                 <a href="#" className="text-sm text-gray-700 hover:text-amber-600 transition-colors">
-                  Our Team
+                  Notre équipe
                 </a>
               </li>
               <li>
                 <a href="#" className="text-sm text-gray-700 hover:text-amber-600 transition-colors">
-                  News & Updates
+                  Nos actualités
                 </a>
               </li>  
             </ul>
